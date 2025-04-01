@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Classes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #333;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 32px;
+            font-size: 16px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Live Classes</h1>
+        <div class="buttons">
+            <button id="button1">Button 1</button>
+            <button id="button2">Button 2</button>
+        </div>
+    </div>
+
+    <script>
+        // Load the configuration JSON file
+        fetch('config.json')
+            .then(response => response.json())
+            .then(config => {
+                // Set button text and links from the JSON
+                document.getElementById("button1").textContent = config.button1Text;
+                document.getElementById("button1").onclick = function() {
+                    window.location.href = config.button1Link;
+                };
+
+                document.getElementById("button2").textContent = config.button2Text;
+                document.getElementById("button2").onclick = function() {
+                    window.location.href = config.button2Link;
+                };
+            })
+            .catch(error => {
+                console.error("Error loading the config file: ", error);
+            });
+    </script>
+</body>
+</html>
